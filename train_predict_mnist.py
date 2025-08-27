@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 """
 Train and test a Hopfield Network on MNIST digit data.
 """
@@ -10,16 +9,12 @@ import hopfield_network
 from keras.datasets import mnist
 
 def reshape(data):
-    """
-    Reshape a flat array into a square 2D array.
-    """
+    # 1D to 2D
     dim = int(np.sqrt(len(data)))
     return np.reshape(data, (dim, dim))
 
 def plot(data, test, predicted, figsize=(3, 3)):
-    """
-    Plot training, corrupted, and predicted images side by side.
-    """
+   
     data = [reshape(d) for d in data]
     test = [reshape(d) for d in test]
     predicted = [reshape(d) for d in predicted]
@@ -37,9 +32,7 @@ def plot(data, test, predicted, figsize=(3, 3)):
     plt.show()
 
 def preprocessing(img):
-    """
-    Threshold and flatten MNIST image for network input.
-    """
+   
     w, h = img.shape
     thresh = threshold_mean(img)
     binary = img > thresh
@@ -47,15 +40,11 @@ def preprocessing(img):
     return bipolar.flatten()
 
 def main():
-    """
-    Main function to train and test the Hopfield Network on MNIST.
-    """
+    
     # Load MNIST data
     (x_train, y_train), (_, _) = mnist.load_data()
     digits = [3, 4, 5]
     data = [x_train[y_train == i][0] for i in range(3)]
-    print("MNIST data loaded.")
-    print("thisis data", data,"and this are digits", digits)
     print("Start to data preprocessing...")
     data = [preprocessing(img) for img in data]
     

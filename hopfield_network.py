@@ -9,14 +9,9 @@ import matplotlib.cm as cm
 from tqdm import tqdm
 
 class HopfieldNetwork(object):
-    """
-    Hopfield Network for pattern storage and retrieval.
-    """
-
+   
     def train_weights(self, train_data):
-        """
-        Train the network weights using Hebbian learning.
-        """
+        
         print("Start to train weights...")
         num_patterns = len(train_data)
         num_neurons = train_data[0].shape[0]
@@ -34,9 +29,7 @@ class HopfieldNetwork(object):
         self.W = W
 
     def predict(self, data, num_iter=20, threshold=0, asyn=False):
-        """
-        Predict stored patterns from input data.
-        """
+
         print("Start to predict...")
         self.num_iter = num_iter
         self.threshold = threshold
@@ -46,9 +39,7 @@ class HopfieldNetwork(object):
         return [self._run(pattern) for pattern in tqdm(copied_data)]
 
     def _run(self, state):
-        """
-        Run the network to retrieve a pattern.
-        """
+        
         s = state
         e = self.energy(s)
 
@@ -74,15 +65,11 @@ class HopfieldNetwork(object):
             return s
 
     def energy(self, s):
-        """
-        Calculate the energy of the current state.
-        """
+       
         return -0.5 * s @ self.W @ s + np.sum(s * self.threshold)
 
     def plot_weights(self):
-        """
-        Visualize the network weights.
-        """
+        
         plt.figure(figsize=(6, 5))
         w_mat = plt.imshow(self.W, cmap=cm.coolwarm)
         plt.colorbar(w_mat)
