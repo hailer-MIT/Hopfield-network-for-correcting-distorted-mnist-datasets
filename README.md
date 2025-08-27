@@ -1,53 +1,33 @@
-# Hopfield Network
-Hopfield network (Amari-Hopfield network) implemented with Python. Two update rules are implemented: **Asynchronous** & **Synchronous**.
+# Hopfield Network MNIST Demo
 
-## Requirement
-- Python >= 3.5
-- numpy
-- matplotlib
-- skimage
-- tqdm
-- keras (to load MNIST dataset)
+This project demonstrates a Hopfield Network for associative memory using the MNIST handwritten digit dataset.  
+It trains the network to remember selected digits and reconstructs them from noisy/corrupted inputs.
+
+## Features
+
+- Train Hopfield Network on MNIST digits (configurable, e.g. 7, 8, 9)
+- Visualize original, corrupted, and reconstructed images
+- Save and load trained weights for consistent results
 
 ## Usage
-Run `train.py` or `train_mnist.py`.
 
-## Demo
+1. Install dependencies:
+    ```bash
+    pip install numpy matplotlib scikit-image tqdm keras
+    ```
 
-### train.py
-The following is the result of using **Synchronous** update.
-```
-Start to data preprocessing...
-Start to train weights...
-100%|██████████| 4/4 [00:06<00:00,  1.67s/it]
-Start to predict...
-100%|██████████| 4/4 [00:02<00:00,  1.80it/s]
-Show prediction results...
-```
-<img src="https://github.com/takyamamoto/Hopfield-Network/blob/master/imgs/result.png" width=50%>
+2. Run training and prediction:
+    ```bash
+    python train_predict_mnist.py
+    ```
 
-```
-Show network weights matrix...
-````
-<img src="https://github.com/takyamamoto/Hopfield-Network/blob/master/imgs/weights.png" width=50%>
+3. To reuse good weights:
+    - After a good training run, weights are saved.
+    - On later runs, load weights and skip training.
 
-### train_mnist.py
-The following is the result of using **Asynchronous** update.
-```
-Start to data preprocessing...
-Start to train weights...
-100%|██████████| 3/3 [00:00<00:00, 274.99it/s]
-Start to predict...
-100%|██████████| 3/3 [00:00<00:00, 32.52it/s]
-Show prediction results...
-```
-<img src="https://github.com/takyamamoto/Hopfield-Network/blob/master/imgs/result_mnist.png" width=30%>
+## Files
 
-```
-Show network weights matrix...
-````
-<img src="https://github.com/takyamamoto/Hopfield-Network/blob/master/imgs/weights_mnist.png" width=50%>
-
-## Reference
-- Amari, "Neural theory of association and concept-formation", SI. Biol. Cybernetics (1977) 26: 175. https://doi.org/10.1007/BF00365229
-- J. J. Hopfield, "Neural networks and physical systems with emergent collective computational abilities", Proceedings of the National Academy of Sciences of the USA, vol. 79 no. 8 pp. 2554–2558, April 1982.
+- `train_predict_mnist.py` — Main script for training and testing
+- `hopfield_network.py` — Hopfield Network implementation
+- `.gitignore` — Ignore unnecessary files
+- `README.md` — Project info
