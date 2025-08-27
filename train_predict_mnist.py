@@ -8,6 +8,14 @@ from skimage.filters import threshold_mean
 import hopfield_network
 from keras.datasets import mnist
 
+
+def get_corrupted_input(input_data, corruption_level):
+    
+    corrupted = np.copy(input_data)
+    invertor = np.random.binomial(n=1, p=corruption_level, size=len(input_data))
+    corrupted[invertor == 1] *= -1
+    return corrupted
+
 def reshape(data):
     # 1D to 2D
     dim = int(np.sqrt(len(data)))
@@ -54,6 +62,7 @@ def main():
     test = [x_train[y_train == i][1] for i in range(3)]
     test = [preprocessing(img) for img in test]
     
+    # test = [get_corrupted_input(d, 0.3) for d in test]
     predicted = model.predict(test, threshold=50, asyn=True)
     print("Show prediction results...")
     plot(data, test, predicted, figsize=(8, 8))
