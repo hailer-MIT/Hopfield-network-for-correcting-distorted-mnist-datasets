@@ -3,6 +3,13 @@
 This project demonstrates a Hopfield Network for associative memory using the MNIST handwritten digit dataset.  
 It trains the network to remember selected digits and reconstructs them from noisy/corrupted inputs.
 
+
+## Demo: MNIST Digit Reconstruction
+
+The following result shows the Hopfield network's ability to reconstruct corrupted MNIST digits. The left column shows the original training digits, the middle column shows the noisy input, and the right column shows the network's output.
+
+![Hopfield Network MNIST Results](pics/result_mnist.png)
+
 ## Features
 
 - Train Hopfield Network on MNIST digits (configurable, e.g. 7, 8, 9)
