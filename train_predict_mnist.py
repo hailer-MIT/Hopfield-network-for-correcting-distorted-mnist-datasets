@@ -18,8 +18,8 @@ def get_corrupted_input(input_data, corruption_level):
 
 def reshape(data):
     # 1D to 2D
-    dim = int(np.sqrt(len(data)))
-    return np.reshape(data, (dim, dim))
+    dimen = int(np.sqrt(len(data)))
+    return np.reshape(data, (dimen, dimen))
 
 def plot(data, test, predicted, figsize=(3, 3)):
    
@@ -51,7 +51,7 @@ def main():
     
     # Load MNIST data
     (x_train, y_train), (_, _) = mnist.load_data()
-    digits = [3, 4, 5]
+    # digits = [3, 4, 5]
     data = [x_train[y_train == i][0] for i in range(3)]
     print("Start to data preprocessing...")
     data = [preprocessing(img) for img in data]
@@ -62,8 +62,8 @@ def main():
     test = [x_train[y_train == i][1] for i in range(3)]
     test = [preprocessing(img) for img in test]
     
-    # test = [get_corrupted_input(d, 0.3) for d in test]
-    predicted = model.predict(test, threshold=50, asyn=True)
+    test = [get_corrupted_input(d, 0.1) for d in test]
+    predicted = model.predict(test, threshold=75, asyn=True)
     print("Show prediction results...")
     plot(data, test, predicted, figsize=(8, 8))
     print("Show network weights matrix...")

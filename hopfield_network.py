@@ -1,7 +1,6 @@
-# -*- coding: utf-8 -*-
-"""
-Hopfield Network implementation for associative memory.
-"""
+
+
+""" Hopfield Network implementation for associative memory.  """
 
 import numpy as np
 from matplotlib import pyplot as plt
@@ -18,19 +17,20 @@ class HopfieldNetwork(object):
         self.num_neuron = num_neurons
 
         W = np.zeros((num_neurons, num_neurons))
-        rho = np.sum([np.sum(pattern) for pattern in train_data]) / (num_patterns * num_neurons)
+        density = np.sum([np.sum(pattern) for pattern in train_data]) / (num_patterns * num_neurons)
 
         for pattern in tqdm(train_data):
-            centered = pattern - rho
+            centered = pattern - density
             W += np.outer(centered, centered)
 
         np.fill_diagonal(W, 0)
+        
         W /= num_patterns
         self.W = W
 
     def predict(self, data, num_iter=20, threshold=0, asyn=False):
 
-        print("Start to predict...")
+        print(f"Start to predict...using {asyn}")
         self.num_iter = num_iter
         self.threshold = threshold
         self.asyn = asyn
